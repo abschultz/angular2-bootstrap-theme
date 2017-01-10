@@ -1,0 +1,58 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="toggle-btn" (click)="toggleNav()">
+        <i *ngIf="toggled" class="material-icons toggle-icon">chevron_right</i>
+        <i *ngIf="!toggled" class="material-icons toggle-icon">chevron_left</i>
+    </div>
+    <a routerLink="/home" class="navbar-brand" href="#">Brand</a>
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse right-nav">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li *ngFor="let link of navLinks">
+                        <a routerLink="{{link.route}}">{{link.title}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a routerLink="/contact">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="container">
+    <div id="wrapper" [class.toggled]="toggled === true">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li *ngFor="let link of navLinks">
+                    <a routerLink="{{link.route}}">{{link.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+</div>
